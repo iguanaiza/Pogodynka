@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pogodynka.MVVM.Views.PogodaView"
+             xmlns:SkiaSharp="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
+             xmlns:strings="clr-namespace:Pogodynka.Resources.Strings"
+             xmlns:converter="clr-namespace:Pogodynka.Converters"
+             Title="Pogodynka">
+
+    <ContentPage.Resources>
+        <converter:KodPogodaConverter x:Key="KodPogodaConverter"/>
+        <converter:KodGrafikaConverter x:Key="KodGrafikaConverter"/>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".06*, .5*, .33*" Style="{StaticResource MainGrid}">
+        <!--#region Searchbar -->
+        <Border>
+            <Grid ColumnDefinitions=".85*,.15*">
+                <SearchBar x:Name="searchBar" Text="{Binding PlaceName, Mode=TwoWay}" Placeholder="{x:Static strings:AppResources.labelSearch}" SearchCommand="{Binding SearchCommand}" SearchCommandParameter="{Binding Source={x:Reference searchBar}, Path=Text}"/>
+                <ImageButton Grid.Column="1"  Command="{Binding UseDeviceLocationCommand}"/>
+            </Grid>
+        </Border>
+        <!--#endregion-->
+        
+        <!--#region Aktualna pogoda -->
+        <Grid Grid.Row="1" RowDefinitions=".2*,.6*, .15*" ColumnDefinitions=".6*, .4*" IsVisible="{Binding IsVisible}">
+            <!-- Data i miejscowość -->
+            <VerticalStackLayout Style="{StaticResource StackLeft}">
+                <Label Text="{Binding DateNow, StringFormat='{0:dd. MMMM yyyy}'}" Style="{StaticResource LabelDate}"/>
+                <Label Text="{Binding PlaceNameFound}" Style="{StaticResource LabelCity}"/>
+            </VerticalStackLayout>
+            <!-- Temperatura i opis pogody -->
+            <VerticalStackLayout Grid.Column="1" Style="{StaticResource StackRight}">
+                <Label Text="{Binding PogodaData.current.apparent_temperature, StringFormat='{0}°C'}" Style="{StaticResource LabelTemperature}"/>
+                <Label Text="{Binding PogodaData.current.weather_code, Converter={StaticResource KodPogodaConverter}}" Style="{StaticResource LabelDesc}"/>
+            </VerticalStackLayout>
+            <!-- Grafika -->
+            <SkiaSharp:SKLottieView  Grid.Row="1" Grid.ColumnSpan="2" RepeatCount="-1" HeightRequest="264">
+                <SkiaSharp:SKLottieView.Source>
+                    <MultiBinding Converter="{StaticResource KodGrafikaConverter}">
+                        <Binding Path="PogodaData.current.weather_code"/>
+                        <Binding Path="PogodaData.current.is_day"/>
+                    </MultiBinding>
+                </SkiaSharp:SKLottieView.Source>
+            </SkiaSharp:SKLottieView>
+            <!--Wiatr, ciśnienie i wilgotność-->
+            <Border Grid.Row="2" Grid.ColumnSpan="2">
+                <Grid ColumnDefinitions="*, *, *, *">
+                    <!-- Wiatr - prędkość i kierunek -->
+                    <VerticalStackLayout Grid.Column="0" Style="{StaticResource StackCurrent}">
+                        <Label Text="{x:Static strings:AppResources.labelWind}" Style="{StaticResource LabelTitle}"/>
+                        <Label Text="{Binding PogodaData.current.wind_speed_10m, StringFormat='{0} km/h'}" Style="{StaticResource LabelValue}"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1" Style="{StaticResource StackCurrent}">
+                        <Label Text="{x:Static strings:AppResources.labelWindDirect}" Style="{StaticResource LabelTitle}"/>
+                        <Label Text="{Binding PogodaData.current.wind_direction_10m, StringFormat='{0}°'}" Style="{StaticResource LabelValue}"/>
+                    </VerticalStackLayout>
+                    <!-- Ciśnienie -->
+                    <VerticalStackLayout Grid.Column="2" Style="{StaticResource StackCurrent}">
+                        <Label Text="{x:Static strings:AppResources.labelPressure}" Style="{StaticResource LabelTitle}"/>
+                        <Label Text="{Binding PogodaData.current.pressure_msl, StringFormat='{0} hPa'}" Style="{StaticResource LabelValue}"/>
+                    </VerticalStackLayout>
+                    <!-- Wilgotność -->
+                    <VerticalStackLayout Grid.Column="3" Style="{StaticResource StackCurrent}">
+                        <Label Text="{x:Static strings:AppResources.labelHumidity}" Style="{StaticResource LabelTitle}"/>
+                        <Label Text="{Binding PogodaData.current.relative_humidity_2m, StringFormat='{0}%'}" Style="{StaticResource LabelValue}"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+        </Grid>
+        <!--#endregion-->
+        
+        <!--#region Prognoza -->
+        <CollectionView Grid.Row="2" ItemsSource="{Binding PogodaData.daily_single}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="8" Orientation="Horizontal"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource CollectionViewContainer}">
+                        <VerticalStackLayout>
+                            <!-- Data -->
+                            <Label Text="{Binding time}" Style="{StaticResource CollectionViewItem_Header}"/>
+                            <!-- Grafika -->
+                            <SkiaSharp:SKLottieView RepeatCount="-1" HeightRequest="88" WidthRequest="88">
+                                <SkiaSharp:SKLottieView.Source>
+                                    <MultiBinding Converter="{StaticResource KodGrafikaConverter}">
+                                        <Binding Path="weather_code"/>
+                                        <Binding Path="is_day"/>
+                                    </MultiBinding>
+                                </SkiaSharp:SKLottieView.Source>
+                            </SkiaSharp:SKLottieView>
+                            <!-- Pogoda opis-->
+                            <Label Text="{Binding weather_code, Converter={StaticResource KodPogodaConverter}}" Style="{StaticResource CollectionViewItem}"/>
+                            <!--Informacje pogdowe-->
+                            <VerticalStackLayout Style="{StaticResource CollectionView}">
+                                <!-- Temperatura max i min -->
+                                <HorizontalStackLayout>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{x:Static strings:AppResources.labelTempMax}" Style="{StaticResource CollectionViewItem_Title}"/>
+                                                <Span Text="{Binding apparent_temperature_max, StringFormat='{0}°C'}"  Style="{StaticResource CollectionViewItem_TempMax}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{x:Static strings:AppResources.labelTempMin}" Style="{StaticResource CollectionViewItem_Title}"/>
+                                                <Span Text="{Binding apparent_temperature_min, StringFormat='{0}°C'}" Style="{StaticResource CollectionViewItem_TempMin}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </HorizontalStackLayout>
+                                <!-- Wiatr - prędkość i kierunek -->
+                                <HorizontalStackLayout>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{x:Static strings:AppResources.labelWin}" Style="{StaticResource CollectionViewItem_Title}"/>
+                                                <Span Text="{Binding wind_speed_10m_mean, StringFormat='{0} km/h'}"  Style="{StaticResource CollectionViewItem}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{x:Static strings:AppResources.labelWinDir}" Style="{StaticResource CollectionViewItem_Title}"/>
+                                                <Span Text="{Binding winddirection_10m_dominant, StringFormat='{0}°'}"  Style="{StaticResource CollectionViewItem}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </HorizontalStackLayout>
+                                <!-- Ciśnienie -->
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static strings:AppResources.labelPre}" Style="{StaticResource CollectionViewItem_Title}"/>
+                                            <Span Text="{Binding pressure_msl_mean, StringFormat='{0} hPa'}"  Style="{StaticResource CollectionViewItem}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <!-- Wilgotność -->
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{x:Static strings:AppResources.labelHum}" Style="{StaticResource CollectionViewItem_Title}"/>
+                                            <Span Text="{Binding relative_humidity_2m_mean, StringFormat='{0}%'}"  Style="{StaticResource CollectionViewItem}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--#endregion-->
+        
+        <!--ActivityIndicator-->
+        <Grid Margin="-8" Grid.RowSpan="3" RowDefinitions="*, *, *, *, *" IsVisible="{Binding IsLoading}" Style="{StaticResource ActivityIndicator}">
+            <ActivityIndicator Grid.Row="1" IsRunning="True"/>
+        </Grid>
+    </Grid>
+</ContentPage>

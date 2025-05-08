@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!--#region General-->
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryText}, Dark={StaticResource PrimaryDarkText}}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="MainGrid">
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}"/>
+    </Style>
+
+    <Style TargetType="Grid" x:Key="ActivityIndicator">
+        <Setter Property="Margin" Value="-8"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDark}}"/>
+        <Setter Property="Opacity" Value="0.8"/>
+    </Style>
+
+    <Style TargetType="Border">
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDark}}"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Secondary}, Dark={StaticResource SecondaryDark}}"/>
+    </Style>
+
+    <Style TargetType="VerticalStackLayout">
+        <Setter Property="Spacing" Value="8"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+
+    <Style TargetType="HorizontalStackLayout">
+        <Setter Property="Spacing" Value="8"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+    </Style>
+
+    <Style TargetType="SearchBar">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource Gray500}" />
+        <Setter Property="CancelButtonColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray300}}"/>
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="MinimumHeightRequest" Value="44"/>
+        <Setter Property="MinimumWidthRequest" Value="44"/>
+    </Style>
+
+    <Style TargetType="ImageButton">
+        <Setter Property="HeightRequest" Value="28"/>
+        <Setter Property="WidthRequest" Value="28"/>
+        <Setter Property="Source">
+            <Setter.Value>
+                <AppThemeBinding Light="gps_dark.png" Dark="gps_light.png"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.NavBarIsVisible" Value="False"/>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Main info-->
+    <Style TargetType="Label" x:Key="LabelTitle">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontAttributes" Value="Italic"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelValue">
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelCity">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelDate">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelTemperature">
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="8"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelDesc">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+    </Style>
+
+    <Style TargetType="VerticalStackLayout" x:Key="StackLeft">
+        <Setter Property="Spacing" Value="8"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+    </Style>
+
+    <Style TargetType="VerticalStackLayout" x:Key="StackRight">
+        <Setter Property="Spacing" Value="8"/>
+        <Setter Property="Padding" Value="8"/>
+        <Setter Property="VerticalOptions" Value="End"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+    </Style>
+
+    <Style TargetType="VerticalStackLayout" x:Key="StackCurrent">
+        <Setter Property="Spacing" Value="8"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Collection View -->
+    <Style TargetType="VerticalStackLayout" x:Key="CollectionView">
+        <Setter Property="Spacing" Value="12"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+
+    <Style TargetType="Border" x:Key="CollectionViewContainer">
+        <Setter Property="Margin" Value="0,16,0,0"/>
+        <Setter Property="WidthRequest" Value="180"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="CollectionViewItem">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="CollectionViewItem_TempMax">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource OrangeDark}, Dark={StaticResource OrangeLight}}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="CollectionViewItem_TempMin">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource BlueDark}, Dark={StaticResource BlueLight}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="CollectionViewItem_Title">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontAttributes" Value="Italic"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="CollectionViewItem_Header">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource PrimaryText}, Dark={StaticResource PrimaryDarkText}}"/>
+    </Style>
+    <!--#endregion-->
+</ResourceDictionary>

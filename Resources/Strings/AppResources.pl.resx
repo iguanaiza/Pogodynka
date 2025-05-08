@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="labelWinDir" xml:space="preserve">
+    <value>Kier: </value>
+  </data>
+  <data name="labelHum" xml:space="preserve">
+    <value>Wil: </value>
+  </data>
+  <data name="labelHumidity" xml:space="preserve">
+    <value>Wilgotność</value>
+  </data>
+  <data name="labelPre" xml:space="preserve">
+    <value>Ciś: </value>
+  </data>
+  <data name="labelPressure" xml:space="preserve">
+    <value>Ciśnienie</value>
+  </data>
+  <data name="labelSearch" xml:space="preserve">
+    <value>Wyszukaj</value>
+  </data>
+  <data name="labelTemperature" xml:space="preserve">
+    <value>Temperatura</value>
+  </data>
+  <data name="labelTempMax" xml:space="preserve">
+    <value>Max: </value>
+  </data>
+  <data name="labelTempMin" xml:space="preserve">
+    <value>Min: </value>
+  </data>
+  <data name="labelWin" xml:space="preserve">
+    <value>Wia: </value>
+  </data>
+  <data name="labelWind" xml:space="preserve">
+    <value>Wiatr</value>
+  </data>
+  <data name="labelWindDirect" xml:space="preserve">
+    <value>Kierunek</value>
+  </data>
+  <data name="Weather_default" xml:space="preserve">
+    <value>Brak danych</value>
+  </data>
+  <data name="Weather_value_0" xml:space="preserve">
+    <value>Bezchmurnie</value>
+  </data>
+  <data name="Weather_value_1" xml:space="preserve">
+    <value>Pogodnie</value>
+  </data>
+  <data name="Weather_value_2" xml:space="preserve">
+    <value>Częściowe zachmurzenie</value>
+  </data>
+  <data name="Weather_value_3" xml:space="preserve">
+    <value>Całkowite zachmurzenie</value>
+  </data>
+  <data name="Weather_value_45" xml:space="preserve">
+    <value>Mgła</value>
+  </data>
+  <data name="Weather_value_48" xml:space="preserve">
+    <value>Szadź</value>
+  </data>
+  <data name="Weather_value_51" xml:space="preserve">
+    <value>Mżawka: słaba</value>
+  </data>
+  <data name="Weather_value_53" xml:space="preserve">
+    <value>Mżawka: umiarkowana</value>
+  </data>
+  <data name="Weather_value_55" xml:space="preserve">
+    <value>Mżawka: intensywna</value>
+  </data>
+  <data name="Weather_value_56" xml:space="preserve">
+    <value>Marznąca mżawka: słaba</value>
+  </data>
+  <data name="Weather_value_57" xml:space="preserve">
+    <value>Marznąca mżawka: intensywna</value>
+  </data>
+  <data name="Weather_value_61" xml:space="preserve">
+    <value>Deszcz: słaby</value>
+  </data>
+  <data name="Weather_value_63" xml:space="preserve">
+    <value>Deszcz: umiarkowany</value>
+  </data>
+  <data name="Weather_value_65" xml:space="preserve">
+    <value>Deszcz: silny</value>
+  </data>
+  <data name="Weather_value_66" xml:space="preserve">
+    <value>Marznący deszcz: słaby</value>
+  </data>
+  <data name="Weather_value_67" xml:space="preserve">
+    <value>Marznący deszcz: silny</value>
+  </data>
+  <data name="Weather_value_71" xml:space="preserve">
+    <value>Opady śniegu: słabe</value>
+  </data>
+  <data name="Weather_value_73" xml:space="preserve">
+    <value>Opady śniegu: umiarkowane</value>
+  </data>
+  <data name="Weather_value_75" xml:space="preserve">
+    <value>Opady śniegu: gwałtowne</value>
+  </data>
+  <data name="Weather_value_77" xml:space="preserve">
+    <value>Ziarnisty śnieg</value>
+  </data>
+  <data name="Weather_value_80" xml:space="preserve">
+    <value>Przelotne opady deszczu: słabe</value>
+  </data>
+  <data name="Weather_value_81" xml:space="preserve">
+    <value>Przelotne opady deszczu: umiarkowane</value>
+  </data>
+  <data name="Weather_value_82" xml:space="preserve">
+    <value>Przelotne opady deszczu: gwałtowne</value>
+  </data>
+  <data name="Weather_value_85" xml:space="preserve">
+    <value>Przelotne opady śniegu: słabe</value>
+  </data>
+  <data name="Weather_value_86" xml:space="preserve">
+    <value>Przelotne opady śniegu: intensywne</value>
+  </data>
+  <data name="Weather_value_95" xml:space="preserve">
+    <value>Burza</value>
+  </data>
+  <data name="Weather_value_96" xml:space="preserve">
+    <value>Burza z opadami gradu: słaba</value>
+  </data>
+  <data name="Weather_value_99" xml:space="preserve">
+    <value>Burza z opadami gradu: silna</value>
+  </data>
+  <data name="alertNotFoundTitle" xml:space="preserve">
+    <value>Nie znaleziono</value>
+  </data>
+  <data name="alertNotFoundMessage" xml:space="preserve">
+    <value>Nie znaleziono miejsca.</value>
+  </data>
+  <data name="alertLocationTitle" xml:space="preserve">
+    <value>Lokalizacja</value>
+  </data>
+  <data name="alertLocationMessage" xml:space="preserve">
+    <value>Nie można pobrać lokalizacji urządzenia.</value>
+  </data>
+  <data name="alertNoAccessTitle" xml:space="preserve">
+    <value>Brak dostępu</value>
+  </data>
+  <data name="alertNoAccessMessage" xml:space="preserve">
+    <value>Brak uprawnień do lokalizacji.</value>
+  </data>
+  <data name="errorTitle" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="errorHttpMessage" xml:space="preserve">
+    <value>Nie udało się połączyć z serwerem.</value>
+  </data>
+</root>
