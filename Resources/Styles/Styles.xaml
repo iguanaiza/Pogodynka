@@ -144,9 +144,13 @@
 
     <Style TargetType="Label" x:Key="CollectionViewItem">
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="HorizontalOptions" Value="Center"/>
     </Style>
 
+    <Style TargetType="Label" x:Key="CollectionViewItem_Desc">
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+    
     <Style TargetType="Label" x:Key="CollectionViewItem_TempMax">
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource OrangeDark}, Dark={StaticResource OrangeLight}}" />

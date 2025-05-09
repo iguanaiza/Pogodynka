@@ -12,6 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Pogodynka.Resources.Strings;
+using System.Collections.ObjectModel;
 
 namespace Pogodynka.MVVM.ViewModels
 {
@@ -63,8 +64,7 @@ namespace Pogodynka.MVVM.ViewModels
 
                         if (!string.IsNullOrWhiteSpace(autoPlaceName))
                         {
-                            PlaceNameFound = autoPlaceName;
-
+                            PlaceName = autoPlaceName;
                             //Wrzucenie w wyszukiwarkę i uruchomienie komendy przypisanej do wyszukiwarki
                             if (SearchCommand.CanExecute(autoPlaceName))
                                 SearchCommand.Execute(autoPlaceName);
@@ -133,38 +133,39 @@ namespace Pogodynka.MVVM.ViewModels
         //Pobieranie informacji z API
         private async Task GetWeather(Location location)
         {
-           string latitude = location.Latitude.ToString(CultureInfo.InvariantCulture); //konwersja formatu liczbowego PL na EN
-           string longitude = location.Longitude.ToString(CultureInfo.InvariantCulture); //konwersja formatu liczbowego PL na EN
+            string latitude = location.Latitude.ToString(CultureInfo.InvariantCulture); //konwersja formatu liczbowego PL na EN
+            string longitude = location.Longitude.ToString(CultureInfo.InvariantCulture); //konwersja formatu liczbowego PL na EN
 
-           var url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&daily=weather_code,apparent_temperature_max,apparent_temperature_min,pressure_msl_mean,winddirection_10m_dominant,wind_speed_10m_mean,relative_humidity_2m_mean&current=apparent_temperature,is_day,relative_humidity_2m,weather_code,pressure_msl,wind_speed_10m,wind_direction_10m&timezone=auto";
-           IsLoading = true; //widoczność ActivityIndicator
-           var response = await HttpClient.GetAsync(url);
+            var url = $"https://api.open-meteo.com/v1/forecast?latitude={latitude}&longitude={longitude}&daily=weather_code,apparent_temperature_max,apparent_temperature_min,pressure_msl_mean,winddirection_10m_dominant,wind_speed_10m_mean,relative_humidity_2m_mean&current=apparent_temperature,is_day,relative_humidity_2m,weather_code,pressure_msl,wind_speed_10m,wind_direction_10m&timezone=auto";
+            IsLoading = true; //widoczność ActivityIndicator
 
-           if (response.IsSuccessStatusCode)
-           {
-               using (var responseStream = await response.Content.ReadAsStreamAsync())
-               {
-                   var data = await JsonSerializer.DeserializeAsync<PogodaData>(responseStream);
-                   PogodaData = data;
+            var response = await HttpClient.GetAsync(url);
 
-                   for (int i = 1; i < PogodaData.daily.time.Length-1; i++) //pobieranie danych dla każdego kolejnego dnia z osobna (5 kolejnych dni, API pobiera 7 z bieżącym włącznie)
-                   {
-                       var daily_single = new Daily_Single
-                       {
-                           time = PogodaData.daily.time[i],
-                           weather_code = PogodaData.daily.weather_code[i],
-                           apparent_temperature_min = PogodaData.daily.apparent_temperature_min[i],
-                           apparent_temperature_max = PogodaData.daily.apparent_temperature_max[i],
-                           pressure_msl_mean = PogodaData.daily.pressure_msl_mean[i],
-                           winddirection_10m_dominant = PogodaData.daily.winddirection_10m_dominant[i],
-                           wind_speed_10m_mean = PogodaData.daily.wind_speed_10m_mean[i],
-                           relative_humidity_2m_mean = PogodaData.daily.relative_humidity_2m_mean[i]
-                       };
+            if (response.IsSuccessStatusCode)
+            {
+                using (var responseStream = await response.Content.ReadAsStreamAsync())
+                {
+                    var data = await JsonSerializer.DeserializeAsync<PogodaData>(responseStream);
+                    PogodaData = data;
 
-                       PogodaData.daily_single.Add(daily_single);
-                   }
-               }
-           }
+                    for (int i = 1; i < PogodaData.daily.time.Length - 1; i++) //pobieranie danych dla każdego kolejnego dnia z osobna (5 kolejnych dni, API pobiera 7 z bieżącym włącznie)
+                    {
+                        var daily_single = new Daily_Single
+                        {
+                            time = PogodaData.daily.time[i],
+                            weather_code = PogodaData.daily.weather_code[i],
+                            apparent_temperature_min = PogodaData.daily.apparent_temperature_min[i],
+                            apparent_temperature_max = PogodaData.daily.apparent_temperature_max[i],
+                            pressure_msl_mean = PogodaData.daily.pressure_msl_mean[i],
+                            winddirection_10m_dominant = PogodaData.daily.winddirection_10m_dominant[i],
+                            wind_speed_10m_mean = PogodaData.daily.wind_speed_10m_mean[i],
+                            relative_humidity_2m_mean = PogodaData.daily.relative_humidity_2m_mean[i]
+                        };
+
+                        PogodaData.daily_single.Add(daily_single);
+                    }
+                }
+            }
 
             else
             {
@@ -173,7 +174,7 @@ namespace Pogodynka.MVVM.ViewModels
 
             IsLoading = false; //widoczność ActivityIndicator
             IsVisible = true; //widoczność detali
+            #endregion
         }
-        #endregion
     }
 }
