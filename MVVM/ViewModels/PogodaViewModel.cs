@@ -32,7 +32,7 @@ namespace Pogodynka.MVVM.ViewModels
 
         public PogodaViewModel()
         {
-            //inicjacja klienta do api
+            //inicjacja klienta http do obsługi api
             HttpClient = new HttpClient();
         }
 
@@ -174,7 +174,8 @@ namespace Pogodynka.MVVM.ViewModels
 
             IsLoading = false; //widoczność ActivityIndicator
             IsVisible = true; //widoczność detali
-            #endregion
+            
         }
+        #endregion
     }
 }

@@ -157,8 +157,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <!--#endregion-->
-        
-        
+           
         <!--ActivityIndicator-->
         <Grid Margin="-8" Grid.RowSpan="3" RowDefinitions="*, *, *, *, *" IsVisible="{Binding IsLoading}" Style="{StaticResource ActivityIndicator}">
             <ActivityIndicator Grid.Row="1" IsRunning="True"/>
