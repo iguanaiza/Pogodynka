@@ -17,7 +17,7 @@ The project was developed using **.NET MAUI 9**, Visual Studio 2022, and Android
 
 The animations used in the application are sourced from the free LottieFiles website (lottiefiles.com). The icon and splash screen graphics were created in Adobe Illustrator, based on the visuals from the weather animations.
 
-Additionally, the Fody package was installed to handle the automatic implementation of the INotifyPropertyChanged interface. Fody is a tool for modifying compiled .NET code, allowing for the elimination of boilerplate code, such as the _INotifyPropertyChanged_ implementation.
+Additionally, the _Fody_ package was installed to handle the automatic implementation of the _INotifyPropertyChanged_ interface. _Fody_ is a tool for modifying compiled .NET code, allowing for the elimination of boilerplate code, such as the _INotifyPropertyChanged_ implementation.
 
 To handle the .json animations, the _SkiaSharp.Extended.UI.Maui_ package was installed, which contains SkiaSharp controls for MAUI. SkiaSharp is a 2D graphics system for .NET and C# used for drawing 2D vector graphics, bitmaps, and text.
 
