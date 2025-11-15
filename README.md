@@ -9,4 +9,4 @@ Additionally, the Fody package was installed to handle the automatic implementat
 
 To handle the .json animations, the _SkiaSharp.Extended.UI.Maui_ package was installed, which contains SkiaSharp controls for MAUI. SkiaSharp is a 2D graphics system for .NET and C# used for drawing 2D vector graphics, bitmaps, and text.
 
-**Full project documentation** (in polish) is available in the file w71345_Aplikacja_Pogodynka.pdf
+**Full project documentation** (in polish) is available in the file [w71345_Aplikacja_Pogodynka.pdf]([https://pages.github.com/](https://github.com/iguanaiza/Pogodynka/blob/master/w71345_Aplikacja_Pogodynka.pdf))
